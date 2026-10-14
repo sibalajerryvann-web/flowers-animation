@@ -1,1 +1,210 @@
 # flowers-animation
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers for You ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #09051f, #1b1238, #381b4d);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #ffb6e6;
+            text-shadow: 0 0 15px #ff69b4;
+            animation: glow 2s infinite alternate;
+        }
+
+        p {
+            margin-top: 12px;
+            font-size: 18px;
+            color: #fff0fa;
+        }
+
+        .flower {
+            position: relative;
+            width: 180px;
+            height: 240px;
+            margin: 25px auto;
+            animation: sway 3s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        .stem {
+            position: absolute;
+            width: 7px;
+            height: 125px;
+            background: linear-gradient(to right, #1d8b42, #65e887);
+            left: 87px;
+            bottom: 0;
+            border-radius: 10px;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 48px;
+            height: 23px;
+            background: #43d66e;
+            border-radius: 100% 0 100% 0;
+            bottom: 65px;
+            left: 91px;
+            transform: rotate(-20deg);
+        }
+
+        .leaf.left {
+            left: 43px;
+            bottom: 90px;
+            transform: rotate(30deg) scaleX(-1);
+        }
+
+        .center {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #ffdb55;
+            left: 72px;
+            top: 52px;
+            z-index: 2;
+            box-shadow: 0 0 20px #ffdf70;
+        }
+
+        .petal {
+            position: absolute;
+            width: 43px;
+            height: 62px;
+            background: linear-gradient(to bottom, #ff9de2, #ff39a8);
+            border-radius: 50%;
+            left: 68px;
+            top: 15px;
+            transform-origin: 50% 55px;
+            box-shadow: 0 0 12px #ff69b4;
+        }
+
+        .petal:nth-child(1) { transform: rotate(0deg); }
+        .petal:nth-child(2) { transform: rotate(45deg); }
+        .petal:nth-child(3) { transform: rotate(90deg); }
+        .petal:nth-child(4) { transform: rotate(135deg); }
+        .petal:nth-child(5) { transform: rotate(180deg); }
+        .petal:nth-child(6) { transform: rotate(225deg); }
+        .petal:nth-child(7) { transform: rotate(270deg); }
+        .petal:nth-child(8) { transform: rotate(315deg); }
+
+        .stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            color: white;
+            font-size: 18px;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -30px;
+            font-size: 22px;
+            animation: float 7s linear infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 8px #ff69b4; }
+            to { text-shadow: 0 0 25px #ff69b4, 0 0 40px #ff1493; }
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.2; transform: scale(0.7); }
+            to { opacity: 1; transform: scale(1.3); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-110vh); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <h1>For You, My Love ❤️</h1>
+
+        <div class="flower">
+            <div class="stem"></div>
+            <div class="leaf"></div>
+            <div class="leaf left"></div>
+
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="center"></div>
+        </div>
+
+        <p>I made this flower just for you. 🌸</p>
+        <p>I miss you, and I love you so much! 💗</p>
+    </div>
+
+    <script>
+        const stars = document.getElementById("stars");
+
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement("div");
+            star.className = "star";
+            star.textContent = "✦";
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+            star.style.animationDelay = Math.random() * 2 + "s";
+            stars.appendChild(star);
+        }
+
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.textContent = "💗";
+            heart.style.left = Math.random() * 100 + "%";
+            heart.style.animationDelay = Math.random() * 7 + "s";
+            heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+            document.body.appendChild(heart);
+        }
+    </script>
+</body>
+</html>
